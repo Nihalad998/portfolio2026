@@ -1,0 +1,93 @@
+<section id="projects" class="relative py-24 px-6 bg-[#050816]">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="text-center mb-16">
+      <p class="uppercase tracking-[6px] text-cyan-400 text-2xl mb-4">
+        Projects
+      </p>
+
+      <h2 class="text-3xl md:text-5xl font-black text-white">Featured Work</h2>
+    </div>
+
+    <div class="relative">
+      <!-- Arrows -->
+
+      <button
+        (click)="prevProject()"
+        class="z-[110] hidden md:flex absolute -left-2 md:left-2 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-black/70 border border-white/10 text-cyan-300"
+      >
+        ←
+      </button>
+
+      <button
+        (click)="nextProject()"
+        class="hidden md:flex absolute -right-2 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-black/70 border border-white/10 text-cyan-300"
+      >
+        →
+      </button>
+
+      <!-- Scroll Container -->
+
+      <div
+        #scrollContainer
+        (scroll)="onScroll()"
+        class="projects-slider flex items-center overflow-x-auto scroll-smooth snap-x snap-mandatory px-[35vw] md:px-[20vw] py-10"
+      >
+        <!-- Left Space -->
+
+        <div class="min-w-[5vw] md:min-w-[35vw] shrink-0"></div>
+
+        <!-- Cards -->
+
+        <div
+          *ngFor="let project of projects; let i = index"
+          (click)="setActiveProject(i)"
+          [class.active]="activeProject === i"
+          [style.zIndex]="getZIndex(i)"
+          class="project-card w-[220px] sm:w-[280px] md:w-[360px] h-[380px] sm:h-[420px] p-4 sm:p-6 rounded-[32px] bg-[#0b1225]/95 border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
+        >
+          <img
+            [src]="project.image"
+            [alt]="project.title"
+            class="w-full h-28 sm:h-36 object-cover rounded-2xl"
+          />
+
+          <h3 class="text-lg sm:text-xl font-bold text-cyan-300">
+            {{ project.title }}
+          </h3>
+
+          <p class="text-xs sm:text-sm text-gray-300 line-clamp-3">
+            {{ project.description }}
+          </p>
+
+          <div class="flex flex-wrap content-start gap-2 overflow-hidden">
+            <span *ngFor="let tech of project.tech" class="skill-pill">
+              {{ tech }}
+            </span>
+          </div>
+
+          <div class="flex gap-2 mt-auto">
+            <a
+              [href]="project.live"
+              target="_blank"
+              class="btnHover flex-1 text-center py-2 rounded-xl border border-cyan-400/30 text-cyan-300 text-sm"
+            >
+              Demo
+            </a>
+
+            <a
+              [href]="project.github"
+              target="_blank"
+              class="btnHover flex-1 text-center py-2 rounded-xl border border-cyan-400/30 text-cyan-300 text-sm"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Space -->
+
+        <div class="min-w-[5vw] md:min-w-[35vw] shrink-0"></div>
+      </div>
+    </div>
+  </div>
+</section>

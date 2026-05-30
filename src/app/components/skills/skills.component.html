@@ -1,0 +1,135 @@
+<section id="skills" class="relative py-24 px-6 bg-[#050816]">
+  <div class="max-w-[1400px] mx-auto">
+    <!-- HEADER -->
+
+    <div class="text-center mb-16">
+      <p class="uppercase tracking-[6px] text-cyan-400 text-2xl mb-4">Skills</p>
+
+      <h2 class="text-3xl md:text-5xl font-black text-white">
+        Technologies & Tools
+      </h2>
+    </div>
+
+    <!-- SKILL Slider -->
+    <div class="relative">
+      <!-- Arrows -->
+      <button
+        (click)="prevCard()"
+        class="z-[110] hidden md:flex absolute -left-2 md:left-2 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-black/70 border border-white/10 text-cyan-300"
+      >
+        ←
+      </button>
+      <button
+        (click)="nextCard()"
+        class="hidden md:flex absolute -right-2 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-black/70 border border-white/10 text-cyan-300"
+      >
+        →
+      </button>
+
+      <!-- Scroll Container -->
+      <div
+        #scrollContainer
+        (scroll)="onScroll()"
+        class="skills-slider flex items-center overflow-x-auto scroll-smooth snap-x snap-mandatory px-[35vw] md:px-[20vw] py-10"
+      >
+        <!-- Left Space -->
+        <div class="min-w-[5vw] md:min-w-[35vw] shrink-0"></div>
+
+        <!-- Card 1 -->
+        <div
+          (click)="setActiveCard(0)"
+          [class.active]="activeCard === 0"
+          [style.zIndex]="getZIndex(0)"
+          class="skill-category w-[200px] sm:w-[280px] md:w-[360px] h-[260px] sm:h-[300px] p-4 sm:p-6 rounded-[32px] bg-[#0b1225]/95 border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
+        >
+          <div class="flex items-center justify-center gap-3 mb-6">
+            <i class="fas fa-code text-cyan-300 text-xl"></i>
+
+            <h3 class="text-2xl font-bold text-cyan-300">Core Framework</h3>
+          </div>
+
+          <div class="flex flex-wrap content-start gap-2 overflow-hidden">
+            <span class="skill-pill"> Angular (v14–v18) </span>
+            <span class="skill-pill"> Angular CLI </span>
+            <span class="skill-pill"> Angular Material </span>
+            <span class="skill-pill"> Reactive Forms </span>
+            <span class="skill-pill"> Route Guards </span>
+            <span class="skill-pill"> Interceptors </span>
+            <span class="skill-pill"> Lazy Loading </span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          (click)="setActiveCard(1)"
+          [class.active]="activeCard === 1"
+          [style.zIndex]="getZIndex(1)"
+          class="skill-category w-[200px] sm:w-[280px] md:w-[360px] h-[260px] sm:h-[300px] p-4 sm:p-6 rounded-[32px] bg-[#0b1225]/95 border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
+        >
+          <div class="flex items-center justify-center gap-3 mb-6">
+            <i class="fas fa-desktop text-cyan-300 text-xl"></i>
+
+            <h3 class="text-2xl font-bold text-cyan-300">Language</h3>
+          </div>
+
+          <div class="flex flex-wrap content-start gap-2 overflow-hidden">
+            <span class="skill-pill"> TypeScript </span>
+            <span class="skill-pill"> JavaScript (ES6+) </span>
+            <span class="skill-pill"> HTML5 </span>
+            <span class="skill-pill"> CSS3 </span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          (click)="setActiveCard(2)"
+          [class.active]="activeCard === 2"
+          [style.zIndex]="getZIndex(2)"
+          class="skill-category w-[200px] sm:w-[280px] md:w-[360px] h-[260px] sm:h-[300px] p-4 sm:p-6 rounded-[32px] bg-[#0b1225]/95 border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
+        >
+          <div class="flex items-center justify-center gap-3 mb-6">
+            <i class="fas fa-bolt text-cyan-300 text-xl"></i>
+
+            <h3 class="text-2xl font-bold text-cyan-300">State & Reactivity</h3>
+          </div>
+
+          <div class="flex flex-wrap content-start gap-2 overflow-hidden">
+            <span class="skill-pill">RxJS</span>
+            <span class="skill-pill">Observables</span>
+            <span class="skill-pill">Subjects</span>
+            <span class="skill-pill">async pipe</span>
+            <span class="skill-pill">Angular Signals</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div
+          (click)="setActiveCard(3)"
+          [class.active]="activeCard === 3"
+          [style.zIndex]="getZIndex(3)"
+          class="skill-category w-[200px] sm:w-[280px] md:w-[360px] h-[260px] sm:h-[300px] p-4 sm:p-6 rounded-[32px] bg-[#0b1225]/95 border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
+        >
+          <div class="flex items-center justify-center gap-3 mb-6">
+            <i class="fas fa-wrench text-cyan-300 text-xl"></i>
+
+            <h3 class="text-2xl font-bold text-cyan-300">Tools & Testing</h3>
+          </div>
+
+          <div class="flex flex-wrap content-start gap-2 overflow-hidden">
+            <span class="skill-pill"> Git / GitHub / GitLab </span>
+
+            <span class="skill-pill"> Jasmine / Karma </span>
+
+            <span class="skill-pill"> Firebase </span>
+
+            <span class="skill-pill"> Postman </span>
+
+            <span class="skill-pill"> Jira </span>
+          </div>
+        </div>
+        <!-- Right Space  -->
+        <div class="min-w-[5vw] md:min-w-[35vw] shrink-0"></div>
+      </div>
+    </div>
+  </div>
+</section>

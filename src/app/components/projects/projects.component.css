@@ -1,0 +1,43 @@
+.projects-slider {
+  scrollbar-width: none;
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.project-card {
+  position: relative;
+  margin-left: -200px;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    opacity 0.4s ease;
+  z-index: 1;
+}
+
+.project-card:first-child {
+  margin-left: 0;
+}
+
+.project-card.active {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.22);
+}
+
+.project-card:not(.active) {
+  opacity: 0.9;
+}
+
+.btnHover:hover {
+  background: rgba(34, 211, 238, 0.15);
+  border-color: rgba(34, 211, 238, 0.35);
+  color: #67e8f9;
+  transform: translateY(-10px) scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    margin-left: -90px;
+  }
+}

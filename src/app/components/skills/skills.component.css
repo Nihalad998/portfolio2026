@@ -1,0 +1,74 @@
+.skills-slider {
+  scrollbar-width: none;
+}
+
+.skills-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARD */
+
+.skill-category {
+  position: relative;
+
+  margin-left: -200px;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    opacity 0.4s ease;
+
+  z-index: 1;
+}
+
+/* FIRST CARD */
+.skill-category:first-child {
+  margin-left: 0;
+}
+
+/* ACTIVE CARD */
+.skill-category.active {
+  transform: translateY(-10px) scale(1.03);
+
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.22);
+}
+
+/* INACTIVE */
+
+.skill-category:not(.active) {
+  opacity: 0.9;
+}
+
+/* SKILL PILL */
+
+.skill-pill {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: #d1d5db;
+
+  font-size: 12px;
+
+  transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+  background: rgba(34, 211, 238, 0.15);
+
+  border-color: rgba(34, 211, 238, 0.35);
+
+  color: #67e8f9;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .skill-category {
+    margin-left: -90px;
+  }
+}
