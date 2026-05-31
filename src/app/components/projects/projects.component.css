@@ -30,7 +30,11 @@
 }
 
 .btnHover:hover {
-  background: rgba(34, 211, 238, 0.15);
+  background-color: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
   border-color: rgba(34, 211, 238, 0.35);
   color: #67e8f9;
   transform: translateY(-10px) scale(1.03);

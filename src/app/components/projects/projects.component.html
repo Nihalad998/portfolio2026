@@ -43,7 +43,7 @@
           (click)="setActiveProject(i)"
           [class.active]="activeProject === i"
           [style.zIndex]="getZIndex(i)"
-          class="project-card w-[220px] sm:w-[280px] md:w-[360px] h-[380px] sm:h-[420px] p-4 sm:p-6 rounded-[32px] bg-[#0b1225]/95 border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
+          class="project-card w-[220px] sm:w-[280px] md:w-[360px] h-[380px] sm:h-[420px] p-4 sm:p-6 rounded-[32px] bg-white/[#ffffff0f] border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
         >
           <img
             [src]="project.image"
@@ -51,7 +51,7 @@
             class="w-full h-28 sm:h-36 object-cover rounded-2xl"
           />
 
-          <h3 class="text-lg sm:text-xl font-bold text-cyan-300">
+          <h3 class="text-lg sm:text-xl font-bold text-cyan-400">
             {{ project.title }}
           </h3>
 
@@ -71,7 +71,7 @@
               target="_blank"
               class="btnHover flex-1 text-center py-2 rounded-xl border border-cyan-400/30 text-cyan-300 text-sm"
             >
-              Demo
+              Live Demo
             </a>
 
             <a
