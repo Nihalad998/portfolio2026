@@ -1,92 +1,205 @@
-<section id="projects" class="relative py-24 px-6 bg-[#050816]">
-  <div class="max-w-[1400px] mx-auto">
+<section id="projects" class="py-24 px-5 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Heading -->
     <div class="text-center mb-16">
-      <p class="uppercase tracking-[6px] text-cyan-400 text-2xl mb-4">
-        Projects
-      </p>
+      <p class="uppercase tracking-[4px] text-cyan-300 mb-3">My Work</p>
 
-      <h2 class="text-3xl md:text-5xl font-black text-white">Featured Work</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Projects</h2>
+
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        A selection of projects where I applied my skills to solve real-world
+        problems.
+      </p>
     </div>
 
-    <div class="relative">
-      <!-- Arrows -->
+    <!-- Main Layout -->
+    <div class="grid lg:grid-cols-[380px_1fr] gap-8">
+      <!-- LEFT PANEL -->
+      <div class="rounded-[32px] bg-white/[0.04] border border-white/10 p-5">
+        <h3 class="text-xl text-center font-semibold mb-6">All Projects</h3>
 
-      <button
-        (click)="prevProject()"
-        class="z-[110] hidden md:flex absolute -left-2 md:left-2 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-black/70 border border-white/10 text-cyan-300"
-      >
-        ←
-      </button>
+        <div class="space-y-5">
+          <ng-container *ngFor="let project of projects">
+            <!-- PROJECT CARD -->
+            <div
+              (click)="onCardClick(project)"
+              class="p-5 rounded-2xl border border-white/10 cursor-pointer transition-all duration-300"
+              [ngClass]="{
+                'border-cyan-400 bg-cyan-400/10': activeProject === project,
 
-      <button
-        (click)="nextProject()"
-        class="hidden md:flex absolute -right-2 md:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-black/70 border border-white/10 text-cyan-300"
-      >
-        →
-      </button>
+                'border-white/10 hover:border-cyan-400/40':
+                  activeProject !== project,
+              }"
+            >
+              <h4 class="text-lg text-center font-semibold mb-3">
+                {{ project.title }}
+              </h4>
+              <p class="text-gray-400 text-sm text-center leading-6 mb-4">
+                {{ project.description }}
+              </p>
 
-      <!-- Scroll Container -->
+              <!-- MOBILE BUTTON -->
+              <button
+                type="button"
+                (click)="selectProject(project); $event.stopPropagation()"
+                class="lg:hidden flex items-center justify-center mx-auto py-2 px-4 rounded-xl text-cyan-300 transition hover:text-cyan-200"
+              >
+                {{
+                  activeProject === project ? "Hide Details" : "View Details"
+                }}
+              </button>
+            </div>
 
+            <!-- MOBILE DETAILS -->
+            <div
+              *ngIf="activeProject === project"
+              class="lg:hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 animate-fadeIn"
+            >
+              <h3 class="text-2xl text-center font-bold mb-6">
+                {{ project.title }}
+              </h3>
+
+              <!-- Overview -->
+              <div class="mb-6">
+                <h4 class="text-cyan-300 font-semibold mb-2">
+                  Project Overview
+                </h4>
+
+                <p class="text-gray-400">
+                  {{ project.overview }}
+                </p>
+              </div>
+
+              <!-- Problem -->
+              <div class="mb-6">
+                <h4 class="text-cyan-300 font-semibold mb-2">Problem Solved</h4>
+
+                <p class="text-gray-400">
+                  {{ project.problemSolved }}
+                </p>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="mb-6">
+                <h4 class="text-cyan-300 font-semibold mb-3">Tech Stack</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    *ngFor="let tech of project.technologies"
+                    class="px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 text-sm"
+                  >
+                    {{ tech }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <div class="mb-6">
+                <h4 class="text-cyan-300 font-semibold mb-3">Features</h4>
+                <ul class="space-y-2">
+                  <li
+                    *ngFor="let feature of project.features"
+                    class="text-gray-300"
+                  >
+                    ✓ {{ feature }}
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                  [href]="project.liveDemo"
+                  target="_blank"
+                  class="flex-1 py-3 rounded-xl text-center font-semibold bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-black"
+                >
+                  Live Demo
+                </a>
+                <a
+                  [href]="project.github"
+                  target="_blank"
+                  class="flex-1 py-3 rounded-xl text-center border border-white/10 hover:border-cyan-400/40 transition"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- DESKTOP DETAILS PANEL -->
       <div
-        #scrollContainer
-        (scroll)="onScroll()"
-        class="projects-slider flex items-center overflow-x-auto scroll-smooth snap-x snap-mandatory px-[35vw] md:px-[20vw] py-10"
+        *ngIf="activeProject"
+        class="hidden lg:block rounded-[32px] bg-white/[0.04] border border-white/10 p-8"
       >
-        <!-- Left Space -->
+        <h3 class="text-4xl text-center font-bold mb-6">
+          {{ activeProject.title }}
+        </h3>
 
-        <div class="min-w-[5vw] md:min-w-[35vw] shrink-0"></div>
+        <!-- Overview -->
+        <div class="mb-8">
+          <h4 class="text-cyan-300 font-semibold mb-3">Project Overview</h4>
 
-        <!-- Cards -->
-
-        <div
-          *ngFor="let project of projects; let i = index"
-          (click)="setActiveProject(i)"
-          [class.active]="activeProject === i"
-          [style.zIndex]="getZIndex(i)"
-          class="project-card w-[220px] sm:w-[280px] md:w-[360px] h-[380px] sm:h-[420px] p-4 sm:p-6 rounded-[32px] bg-white/[#ffffff0f] border border-cyan-400/80 backdrop-blur-xl flex flex-col gap-4 shrink-0 cursor-pointer"
-        >
-          <img
-            [src]="project.image"
-            [alt]="project.title"
-            class="w-full h-28 sm:h-36 object-cover rounded-2xl"
-          />
-
-          <h3 class="text-lg sm:text-xl font-bold text-cyan-400">
-            {{ project.title }}
-          </h3>
-
-          <p class="text-xs sm:text-sm text-gray-300 line-clamp-3">
-            {{ project.description }}
+          <p class="text-gray-400">
+            {{ activeProject.overview }}
           </p>
+        </div>
 
-          <div class="flex flex-wrap content-start gap-2 overflow-hidden">
-            <span *ngFor="let tech of project.tech" class="skill-pill">
+        <!-- Problem -->
+        <div class="mb-8">
+          <h4 class="text-cyan-300 font-semibold mb-3">Problem Solved</h4>
+
+          <p class="text-gray-400">
+            {{ activeProject.problemSolved }}
+          </p>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="mb-8">
+          <h4 class="text-cyan-300 font-semibold mb-3">Tech Stack</h4>
+
+          <div class="flex flex-wrap gap-3">
+            <span
+              *ngFor="let tech of activeProject.technologies"
+              class="px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300"
+            >
               {{ tech }}
             </span>
           </div>
-
-          <div class="flex gap-2 mt-auto">
-            <a
-              [href]="project.live"
-              target="_blank"
-              class="btnHover flex-1 text-center py-2 rounded-xl border border-cyan-400/30 text-cyan-300 text-sm"
-            >
-              Live Demo
-            </a>
-
-            <a
-              [href]="project.github"
-              target="_blank"
-              class="btnHover flex-1 text-center py-2 rounded-xl border border-cyan-400/30 text-cyan-300 text-sm"
-            >
-              GitHub
-            </a>
-          </div>
         </div>
 
-        <!-- Right Space -->
+        <!-- Features -->
+        <div class="mb-10">
+          <h4 class="text-cyan-300 font-semibold mb-3">Features</h4>
 
-        <div class="min-w-[5vw] md:min-w-[35vw] shrink-0"></div>
+          <ul class="space-y-2">
+            <li
+              *ngFor="let feature of activeProject.features"
+              class="text-gray-300"
+            >
+              ✓ {{ feature }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-4">
+          <a
+            [href]="activeProject!.liveDemo"
+            target="_blank"
+            class="px-6 py-4 rounded-2xl font-semibold bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-black"
+          >
+            Live Demo
+          </a>
+
+          <a
+            [href]="activeProject.github"
+            target="_blank"
+            class="px-6 py-4 rounded-2xl border border-white/10 hover:border-cyan-400/40 transition"
+          >
+            GitHub Repository
+          </a>
+        </div>
       </div>
     </div>
   </div>
